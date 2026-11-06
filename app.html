@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Example</title>
+</head>
+
+<body>
+
+
+<button 
+    style="
+        display: block;
+        padding: 20px;
+        background-color: blueviolet;
+        color: white;
+        width: 100px;
+        height: 50px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    "
+    type="button"
+    onclick="document.getElementById('school').innerHTML='GLV'">
+    Click me
+</button>
+<button type="button" onclick="document.getElementById('demo').innerHTML='fiona'">
+    fIONA
+</button>
+
+<p id="demo">Hello world!</p>
+
+<h1 id="fiona"></h1>
+
+<h2 id="school"></h2>
+
+<script>
+    document.getElementById("demo").innerHTML = "Welcome to JS";
+
+    document.getElementById("fiona").innerHTML = "My Name";
+
+    document.getElementById("school").innerHTML = "School";
+</script>
+ 
+<script>
+<h1 id="title">hello</h1>
+let title=document.getElementById("hello");
+
+title.style.color="blue";
+title.style.fontSize="40px";
+title.style.backgroundColor = "yellow";
+</script>
+
+
+</body>
+</html>
