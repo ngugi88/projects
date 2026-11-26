@@ -1,0 +1,127 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Shopping List</title>
+</head>
+
+<body class="shopping-list-body">
+
+    <h1 id="title">Shopping List</h1>
+
+    <div id="container">
+
+        <input type="text" id="item" placeholder="Add item">
+
+        <button id="addItem">Add Item</button>
+
+        <p id="error"></p>
+
+        <ul id="shoppingList"></ul>
+
+        <button id="clearbutton">Clear All</button>
+
+    </div>
+
+<script>
+
+    // Create an empty array
+    const items = [];
+
+    // Access HTML elements
+    let iteminput = document.getElementById("item");
+    let addbutton = document.getElementById("addItem");
+    let itemlist = document.getElementById("shoppingList");
+    let errormessage = document.getElementById("error");
+    let clearbutton = document.getElementById("clearbutton");
+
+
+    // Function to add items
+    function additem() {
+
+        // Get the value entered by the user
+        let item = iteminput.value.trim();
+
+        if (item === "") {
+
+            errormessage.textContent = "Please enter an item";
+
+        } else {
+
+            items.push(item);
+
+            errormessage.textContent = "";
+
+            iteminput.value = "";
+
+        }
+
+        displayitems();
+    }
+
+
+    // Function to display items
+    function displayitems() {
+
+        itemlist.innerHTML = "";
+
+        for (let i = 0; i < items.length; i++) {
+
+            let li = document.createElement("li");
+
+            li.textContent = items[i];
+
+            // Create remove button
+            let removebutton = document.createElement("button");
+
+            removebutton.textContent = "Remove";
+
+            // Add click event to remove button
+            removebutton.addEventListener("click", function() {
+
+                removeitem(i);
+
+            });
+
+            li.appendChild(removebutton);
+
+            itemlist.appendChild(li);
+
+        }
+    }
+
+
+    // Event listener for Add Item button
+    addbutton.addEventListener("click", additem);
+
+
+    // Function to remove items
+    function removeitem(index) {
+
+        items.splice(index, 1);
+
+        displayitems();
+
+    }
+
+
+    // Function to clear all items
+    function clearitems() {
+
+        items.length = 0;
+
+        displayitems();
+
+    }
+
+    // Event listener for Clear All button
+    clearbutton.addEventListener("click", clearitems);
+
+
+</script>
+
+</body>
+</html>

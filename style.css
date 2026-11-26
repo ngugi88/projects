@@ -94,3 +94,337 @@ body {
     color: #2b6cb0;
     font-weight: bold;
 }
+
+/* Main heading */
+#title {
+    text-align: center;
+    color: #333;
+    font-size: 32px;
+}
+
+/* Main container */
+/* Main heading */
+#title {
+    text-align: center;
+    color: white;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* Main container */
+#container {
+    background-color: white;
+    width: 90%;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Keep heading above the card */
+.shopping-list-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+/* Input field */
+#item {
+    width: 70%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+}
+
+#item:focus {
+    border-color: #0066cc;
+}
+
+/* Add Item button */
+#container > button {
+    padding: 12px 14px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#container > button:hover {
+    background-color: #004c99;
+}
+
+/* Shopping list */
+#shoppingList {
+    list-style: none;
+    margin-top: 25px;
+}
+
+/* Individual shopping items */
+#shoppingList li {
+    background-color: #f4f6f9;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+    font-size: 16px;
+}
+
+/* Delete button */
+#shoppingList li button {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#shoppingList li button:hover {
+    background-color: #b71c1c;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+    #container {
+        padding: 20px;
+    }
+
+    #title {
+        font-size: 26px;
+    }
+
+    #item {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #container > button {
+        width: 100%;
+    }
+}
+
+/* General styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    padding: 30px;
+}
+
+/* Main container */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #0066cc;
+    color: white;
+    border-radius: 10px;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+}
+
+.header h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+#average {
+    display: inline-block;
+    font-size: 25px;
+    font-weight: bold;
+    color: #ffdd57;
+}
+
+/* Content layout */
+.content {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Table section */
+.table-section {
+    flex: 2;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+thead {
+    background-color: #0066cc;
+    color: white;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+td {
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background-color: #f1f5fb;
+}
+
+/* Form section */
+.form-section {
+    flex: 1;
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.form-section h2 {
+    margin-bottom: 20px;
+    color: #0066cc;
+    font-size: 22px;
+}
+
+/* Input groups */
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 12px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.input-group i {
+    color: #0066cc;
+    font-size: 18px;
+}
+
+.input-group input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+}
+
+/* Error message */
+#error {
+    color: red;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+/* Form buttons */
+.form-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.form-buttons button {
+    padding: 11px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#add-button {
+    background-color: #0066cc;
+    color: white;
+}
+
+#add-button:hover {
+    background-color: #004c99;
+}
+
+.cancel {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cancel:hover {
+    background-color: #b02a37;
+}
+
+.server {
+    background-color: #198754;
+    color: white;
+}
+
+.server:hover {
+    background-color: #146c43;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .table-section,
+    .form-section {
+        width: 100%;
+    }
+
+    .header h1 {
+        font-size: 22px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+}
+

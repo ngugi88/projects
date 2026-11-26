@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <!-- page header -->
+        <div class="header">
+            <h1>student Grade table</h1>
+            <h2>Grade Average:</h2>
+            <span id="average">89,000</span>
+        </h2>
+    </div>
+    <div class="content">
+        <!-- student table -->
+         <div class="table-section">
+            <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Student Course</th>
+                    <th>Student Grade</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+                    <tbody id="StudentTable">
+                    </tbody>
+            </table>
+
+         </div>
+         <!-- Add student form  -->
+         <div class="form-section">
+            <h2> Add student</h2>
+            <div class="input-group">
+                <i class="fa-solid fa-circle-user"></i>
+                <input type="text" id="StudentName"placeholder="student name"/>
+                
+            </div>
+            <div class="input-group">
+                <i class="fa-solid fa-circle-user"></i>
+                <input type="text" id="Studentcourse"placeholder="student course"/>
+                
+            </div>
+            <div class="input-group">
+                <i class="fa-solid fa-circle-user"></i>
+                <input type="number" id="Studentgrade"placeholder="student grade"/>
+                
+            </div>
+            <p id="error"></p>
+            <div class="form-buttons">
+                <button id="addButton">Add</button>
+                <button class="cancel">cancel</button>
+                <button class="server">pull data</button>
+            </div>
+         </div>
+    </div>
+    </div>
+    <script>
+    
+let students = [
+    {name: "john Reo", course: "math", grade: 88},
+    {name: "chris warren", course: "planning", grade: 100},
+    {name: "Jane wanjiku", course: "baking", grade: 92},
+    {name: "Ann Njoroge", course: "web design", grade: 54},
+    {name: "mary jane", course: "ICT", grade: 92}
+];
+
+// Store the position of the student being edited
+let editingindex = -1;
+
+// Display students in the table
+function displaystudents() {
+
+    let table = document.getElementById("StudentTable");
+
+    table.innerHTML = "";
+
+    // Loop through the students array
+    for (let i = 0; i < students.length; i++) {
+
+        let row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${students[i].name}</td>
+            <td>${students[i].course}</td>
+            <td>${students[i].grade}</td>
+            <td>
+                <button onclick="editStudent(${i})">Edit</button>
+                <button onclick="deleteStudent(${i})">Delete</button>
+            </td>
+        `;
+
+        table.appendChild(row);
+    }
+
+    calculateAverage();
+}
+
+// ADD STUDENT
+function addStudent() {
+
+    let name = document.getElementById("StudentName").value.trim();
+    let course = document.getElementById("Studentcourse").value.trim();
+    let grade = document.getElementById("Studentgrade").value.trim();
+
+    let error = document.getElementById("error");
+
+    // Check empty fields
+    if (name === "" || course === "" || grade === "") {
+        error.textContent = "Please fill all fields";
+        return;
+    }
+
+    grade = Number(grade);
+
+    // Check grade range
+    if (grade < 0 || grade > 100) {
+        error.textContent = "Grade must be between 0 and 100.";
+        return;
+    }
+
+    // Create student object
+    let student = {
+        name: name,
+        course: course,
+        grade: grade
+    };
+
+    // Check if adding or editing
+    if (editingindex === -1) {
+        students.push(student);
+    } else {
+        students[editingindex] = student;
+    }
+
+    error.textContent = "";
+
+    cancelForm();
+    displaystudents();
+}
+
+// EDIT STUDENT
+function editStudent(index) {
+
+    document.getElementById("StudentName").value = students[index].name;
+
+    document.getElementById("Studentcourse").value = students[index].course;
+
+    document.getElementById("Studentgrade").value = students[index].grade;
+
+    editingindex = index;
+
+    document.getElementById("addButton").textContent = "Update";
+}
+
+// DELETE STUDENT
+function deleteStudent(index) {
+
+    students.splice(index, 1);
+
+    cancelForm();
+    displaystudents();
+}
+
+// CLEAR FORM
+function cancelForm() {
+
+    document.getElementById("StudentName").value = "";
+
+    document.getElementById("Studentcourse").value = "";
+
+    document.getElementById("Studentgrade").value = "";
+
+    document.getElementById("error").textContent = "";
+
+    editingindex = -1;
+
+    document.getElementById("addButton").textContent = "Add";
+}
+
+// CALCULATE AVERAGE
+function calculateAverage() {
+
+    let total = 0;
+
+    for (let i = 0; i < students.length; i++) {
+
+        total = total + students[i].grade;
+    }
+
+    let average = 0;
+
+    if (students.length > 0) {
+        average = total / students.length;
+    }
+
+    document.getElementById("average").textContent = average.toFixed(2);
+}
+
+// BUTTON EVENTS
+document.getElementById("addButton").addEventListener("click", addStudent);
+
+document.querySelector(".cancel").addEventListener("click", cancelForm);
+
+// Display students when page loads
+displaystudents();
+</script>
+</body>
+</html>

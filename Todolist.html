@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Todo List</title>
+</head>
+
+<body class="shopping-list-body">
+
+    <h1 id="todo-title">Todo List</h1>
+
+    <div id="container">
+
+        <input type="text" id="task" placeholder="Add tasks">
+
+        <button id="addTask">Add Task</button>
+
+        <p id="error"></p>
+
+        <ul id="tasklist"></ul>
+
+        <button id="clearbutton">Clear All</button>
+
+    </div>
+
+<script>
+
+    // Create an empty array
+    const tasks = [];
+
+    // Access HTML elements
+    let taskinput = document.getElementById("task");
+    let addbutton = document.getElementById("addTask");
+    let tasklist = document.getElementById("tasklist");
+    let errormessage = document.getElementById("error");
+    let clearbutton = document.getElementById("clearbutton");
+
+    // Track the task being edited
+    let editingIndex = -1;
+
+    // Function to add tasks
+    function addtasks() {
+
+        const task = taskinput.value.trim();
+
+        if (task === "") {
+
+            errormessage.textContent = "Please enter a task";
+
+        } else {
+
+            if (editingIndex === -1) {
+
+                // Add a new task
+                tasks.push(task);
+
+            } else {
+
+                // Update an existing task
+                tasks[editingIndex] = task;
+
+                editingIndex = -1;
+                addbutton.textContent = "Add Task";
+
+            }
+
+            errormessage.textContent = "";
+            taskinput.value = "";
+
+        }
+
+        displaytasks();
+
+    }
+
+    // Function to display tasks
+    function displaytasks() {
+
+        tasklist.innerHTML = "";
+
+        for (let i = 0; i < tasks.length; i++) {
+
+            let li = document.createElement("li");
+
+            li.textContent = tasks[i] + " ";
+
+            // Create edit button
+            let editbutton = document.createElement("button");
+
+            editbutton.textContent = "Edit";
+
+            editbutton.addEventListener("click", function() {
+
+                taskinput.value = tasks[i];
+
+                editingIndex = i;
+
+                addbutton.textContent = "Update Task";
+
+            });
+
+            // Create delete button
+            let removebutton = document.createElement("button");
+
+            removebutton.textContent = "Delete";
+
+            removebutton.addEventListener("click", function() {
+
+                removetask(i);
+
+            });
+
+            li.appendChild(editbutton);
+            li.appendChild(removebutton);
+
+            tasklist.appendChild(li);
+
+        }
+
+    }
+
+    // Event listener for Add Task button
+    addbutton.addEventListener("click", addtasks);
+
+    // Function to remove a task
+    function removetask(index) {
+
+        tasks.splice(index, 1);
+
+        // Cancel editing if the edited task is deleted
+        if (editingIndex === index) {
+            editingIndex = -1;
+            taskinput.value = "";
+            addbutton.textContent = "Add Task";
+        } else if (editingIndex > index) {
+            editingIndex--;
+        }
+
+        displaytasks();
+
+    }
+
+    // Function to clear all tasks
+    function cleartasks() {
+
+        tasks.length = 0;
+
+        editingIndex = -1;
+
+        taskinput.value = "";
+
+        addbutton.textContent = "Add Task";
+
+        errormessage.textContent = "";
+
+        displaytasks();
+
+    }
+
+    // Event listener for Clear All button
+    clearbutton.addEventListener("click", cleartasks);
+
+</script>
+
+</body>
+</html>
