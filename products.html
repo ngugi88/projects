@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>My Shopping Store</title>
+</head>
+<body class="product-body">
+
+    <h1 class="heading">My Shopping Store</h1>
+
+    <h2 class="shop">Available Products</h2>
+
+    <div id="products" class="products-container"></div>
+
+    <h2>My Shopping Cart</h2>
+
+<div id="cart-items"></div>
+
+<p>Cart Items: <span id="cart-count">0</span></p>
+
+<p>Total: Ksh <span id="total">0</span></p>
+
+    <script>
+
+// Array of products
+let products = [
+    {
+        image: "image/840-g8-c-removebg-preview.png",
+        name: "HP Laptop",
+        description: "HP Core i5, 8GB RAM, 256GB SSD",
+        price: 45000
+    },
+    {
+        image: "image/Samsung-Galaxy-S24-Ultra-512gb-removebg-preview.png",
+        name: "Samsung Phone",
+        description: "Samsung Galaxy smartphone",
+        price: 30000
+    },
+    {
+        image: "image/images__3_-removebg-preview.png",
+        name: "HP Printer",
+        description: "HP colour printer",
+        price: 15000
+    }
+];
+
+// Get products container
+let productList = document.getElementById("products");
+
+// Display products
+products.forEach(function(product, index) {
+
+    productList.innerHTML += `
+        <div class="product-card">
+
+            <img src="${product.image}" width="150">
+
+            <h3>${product.name}</h3>
+
+            <p>${product.description}</p>
+
+            <h4>Ksh ${product.price}</h4>
+
+            <button onclick="addToCart(${index})">
+                Add to Cart
+            </button>
+
+        </div>
+    `;
+});
+
+// Cart variables
+
+// Shopping cart array
+let cart = [];
+
+// Add to cart function
+function addToCart(index) {
+
+    let selectedProduct = products[index];
+
+    cart.push(selectedProduct);
+
+    displayCart();
+}
+
+// Display shopping cart
+function displayCart() {
+
+    let cartItems = document.getElementById("cart-items");
+
+    let cartCount = document.getElementById("cart-count");
+
+    let total = document.getElementById("total");
+
+    cartItems.innerHTML = "";
+
+    let count = 0;
+    let priceTotal = 0;
+
+    cart.forEach(function(item) {
+
+        cartItems.innerHTML += `
+            <div class="cart-product">
+                <h3>${item.name}</h3>
+                <p>Price: Ksh ${item.price}</p>
+            </div>
+        `;
+
+        count++;
+
+        priceTotal += item.price;
+
+    });
+
+    cartCount.textContent = count;
+
+    total.textContent = priceTotal;
+}
+
+
+
+    </script>
+</body>
+</html>
